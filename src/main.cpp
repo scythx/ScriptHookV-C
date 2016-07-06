@@ -1,13 +1,19 @@
 /*
-	ScriptHookV SDK WRAPPER FOR C
-    
-	Dependencies:
-		ScriptHookV SDK
-		- http://www.dev-c.com/gtav/scripthookv/
+	ScriptHookV SDK WRAPPER FOR C PROGRAMMING LANGUAGE
+		https://github.com/Graefal/ScriptHookV-C
 
-    (C) Raefaldhi Amartya J 2016
+	Dependencies:
+	  ScriptHookV 1.0.617.1a
+	    http://www.dev-c.com/files/ScriptHookV_SDK_1.0.617.1a.zip
 */
-#include "scripthookv\main.h"
+#include "ScriptHookV\main.h"
+
+extern "C" void scriptRegister_CALLBACK();
+extern "C" void SET_scriptRegister_CALLBACK(void(*)());
+extern "C" void scriptRegisterAdditionalThread_CALLBACK();
+extern "C" void SET_scriptRegisterAdditionalThread_CALLBACK(void(*)());
+extern "C" void _scriptUnregister_CALLBACK();
+extern "C" void SET__scriptUnregister_CALLBACK(void(*)());
 
 extern "C" int createTexture_C(const char *);
 int createTexture_C(const char *texFileName)
@@ -59,25 +65,29 @@ void scriptWait_C(DWORD time)
 {
 	scriptWait(time);
 }
+
 extern "C" void scriptRegister_C(HMODULE, void(*)());
 void scriptRegister_C(HMODULE module, void(*LP_SCRIPT_MAIN)())
 {
-	scriptRegister(module, LP_SCRIPT_MAIN);
+	SET_scriptRegister_CALLBACK(LP_SCRIPT_MAIN);
+	scriptRegister(module, scriptRegister_CALLBACK);
 }
 extern "C" void scriptRegisterAdditionalThread_C(HMODULE, void(*)());
 void scriptRegisterAdditionalThread_C(HMODULE module, void(*LP_SCRIPT_MAIN)())
 {
-	scriptRegisterAdditionalThread(module, LP_SCRIPT_MAIN);
+	SET_scriptRegisterAdditionalThread_CALLBACK(LP_SCRIPT_MAIN);
+	scriptRegisterAdditionalThread(module, scriptRegisterAdditionalThread_CALLBACK);
 }
 extern "C" void scriptUnregister_C(HMODULE);
 void scriptUnregister_C(HMODULE module)
 {
 	scriptUnregister(module);
 }
-extern "C" void scriptUnregister_C(void(*)()); 
-void scriptUnregister_C(void(*LP_SCRIPT_MAIN)()) 
+extern "C" void _scriptUnregister_C(void(*)()); 
+void _scriptUnregister_C(void(*LP_SCRIPT_MAIN)())
 {
-	scriptUnregister(LP_SCRIPT_MAIN); 
+	SET__scriptUnregister_CALLBACK(LP_SCRIPT_MAIN);
+	scriptUnregister(_scriptUnregister_CALLBACK);
 }
 
 extern "C" void nativeInit_C(UINT64);
