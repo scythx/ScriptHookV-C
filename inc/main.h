@@ -1,9 +1,9 @@
 /*
-    ScriptHookV SDK WRAPPER FOR C PROGRAMMING LANGUAGE
-        https://github.com/Graefal/ScriptHookV-C
-    
-    ScriptHookV 1.0.617.1a
-        http://www.dev-c.com/files/ScriptHookV_SDK_1.0.617.1a.zip
+	ScriptHookV SDK WRAPPER FOR C PROGRAMMING LANGUAGE
+	    https://github.com/Graefal/ScriptHookV-C
+
+	ScriptHookV 1.0.617.1a
+	  http://www.dev-c.com/files/ScriptHookV_SDK_1.0.617.1a.zip
 */
 #pragma once
 
@@ -17,7 +17,7 @@
 //	Texture deletion is performed automatically when game reloads scripts
 //	Can be called only in the same thread as natives
 
-int createTexture_C(const char *);
+int createTexture_C(const char*);
 #define createTexture createTexture_C
 
 // Draw texture
