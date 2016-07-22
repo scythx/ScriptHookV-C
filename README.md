@@ -1,10 +1,6 @@
 # ScriptHookV-C
-ScriptHookV sdk wrapper for C.
+ScriptHookV sdk wrapper for C Programming Language.
 
-The original ScriptHookV written in C++, so i made this project to write your ScriptHookV scripts in PURE C!
-
-Unfortunately, this project ain't finished. Feel free to contribute :))
-
-Complete List:
-
-1. main.h
+Sometimes you aren't need C++ at all and prefer C for better performance and memory size.
+if you're too lazy to create your own wrapper, you can use mine! and also you can contribute
+to this project if you have better code, because this wrapper just written by noob.
